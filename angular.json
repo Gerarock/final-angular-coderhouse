@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -92,6 +93,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,7 +125,8 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "angular-final-coderhouse",
   "cli": {
     "analytics": "7cc2c358-e59b-4a2c-90bb-9bd69557e2bf"

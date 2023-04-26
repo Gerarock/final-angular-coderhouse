@@ -1,0 +1,33 @@
+mat-toolbar {
+    height: 10%;
+  }
+  
+  .container {
+    width: 100%;
+    height: 90%;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dflex {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidenav {
+    padding: 20px;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .my-10 {
+    margin: 10px 0px;
+  }
