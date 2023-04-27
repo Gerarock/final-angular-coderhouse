@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { StudentsModule } from '../students/students.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatButtonModule,
     MatListModule,
+    StudentsModule,
     RouterModule.forChild([
       { path: 'students', loadChildren: () => import('../students/students.module').then((m) => m.StudentsModule) },
     ])

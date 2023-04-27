@@ -10,14 +10,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StudentsComponent } from './students.component';
 import { RouterModule } from '@angular/router';
 import { StudentsRoutingModule } from './students-routing.module';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
+import { StudentFormComponent } from './student-form/student-form.component';
+import { StudentDetailComponent } from './student-detail/student-detail.component';
 
 @NgModule({
   declarations: [
-    StudentsComponent
+    StudentsComponent,
+    StudentFormComponent,
+    StudentDetailComponent
   ],
   imports: [
     CommonModule,
-    //StudentsRoutingModule,
+    PipesModule,
     MatTableModule,
     MatFormFieldModule,
     MatIconModule,
@@ -29,7 +34,11 @@ import { StudentsRoutingModule } from './students-routing.module';
       {
         path: '',
         component: StudentsComponent
-      }
+      },
+      {
+        path: ':id',
+        component: StudentDetailComponent,
+      },
     ]),
   ],
   exports: [

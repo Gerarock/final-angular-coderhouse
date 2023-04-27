@@ -16,11 +16,8 @@ export class DashboardComponent {
 
   navigate(value: string) {
     switch (value) {
-      case 'addAlumn':
-        this.router.navigate(['/formulario']);
-        break;
       case 'listAlumn':
-        this.router.navigate(['/alumnos']);
+        this.router.navigate(['students']);
         break;
       case 'cardAlumn':
         this.router.navigate(['/cards']);

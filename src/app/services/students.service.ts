@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { IStudent } from '../interfaces/student';
 import { MOCK_DATA } from '../mock/students-mock';
 
@@ -8,9 +8,18 @@ import { MOCK_DATA } from '../mock/students-mock';
 })
 export class StudentsService {
 
-    private estudiantes$ = new BehaviorSubject<IStudent[]>(MOCK_DATA)
+    private alumns$ = new BehaviorSubject<IStudent[]>(MOCK_DATA)
 
     constructor() { }
 
+    getAlumns(): Observable<IStudent[]> {
+        return this.alumns$.asObservable();
+    }
 
+    getAlumnsById(id: number): Observable<IStudent> {
+        return this.alumns$.asObservable()
+            .pipe(
+                map((alumnsMap) => alumnsMap.find((a) => a.id === id))
+            )
+    }
 }

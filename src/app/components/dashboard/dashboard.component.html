@@ -1,26 +1,23 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="icon" (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span appFontSize>Mantenedor de Alumnos (para mas opciones haga click en menu hamburguesa)</span>
-    <span class="spacer"></span>
-    <button mat-icon-button  class="icon favorite-icon">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
-  </mat-toolbar>
-  <mat-drawer-container class="container" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side" opened>
-      <div class="dflex">
-        <button color="primary"  class="my-10" mat-raised-button>
-          Agregar alumno
-        </button>
-        <button color="primary"  class="my-10" mat-raised-button>
-          Lista de alumnos
-        </button>
-        <button color="primary" class="my-10" mat-raised-button>
-          Tarjeta de alumno
-        </button>
-      </div>
-    </mat-drawer>
-    <router-outlet></router-outlet>
-  </mat-drawer-container>
+  <button mat-icon-button class="icon" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span appFontSize>Mantenedor de Alumnos (para mas opciones haga click en menu hamburguesa)</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="icon favorite-icon">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <div class="dflex">
+      <button color="primary" (click)="navigate('listAlumn')" class="my-10" mat-raised-button>
+        Lista de alumnos
+      </button>
+      <button color="primary" (click)="navigate('students')" class="my-10" mat-raised-button>
+        Tarjeta de alumno
+      </button>
+    </div>
+  </mat-drawer>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
