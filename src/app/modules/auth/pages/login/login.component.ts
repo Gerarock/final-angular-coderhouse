@@ -1,64 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UntypedFormControl, Validators, UntypedFormGroup } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { AuthService, LoginFormValue } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  loginForm!: UntypedFormGroup;
-  loading!: boolean;
+    userControl = new FormControl('', [Validators.required]);
+    passwordControl = new FormControl('', [Validators.required]);
 
-  constructor(private router: Router,
-      private titleService: Title
-      ) {
-  }
+    loginForm = new FormGroup({
+        user: this.userControl,
+        password: this.passwordControl,
+    });
 
-  ngOnInit() {
-      this.titleService.setTitle('angular-material-template - Login');
-      //this.authenticationService.logout();
-      this.createForm();
-  }
+    constructor(private authService: AuthService) { }
 
-  private createForm() {
-      const savedUserEmail = localStorage.getItem('savedUserEmail');
-
-      this.loginForm = new UntypedFormGroup({
-          email: new UntypedFormControl(savedUserEmail, [Validators.required, Validators.email]),
-          password: new UntypedFormControl('', Validators.required),
-          rememberMe: new UntypedFormControl(savedUserEmail !== null)
-      });
-  }
-
-  login() {
-/*       const email = this.loginForm.get('email')?.value;
-      const password = this.loginForm.get('password')?.value;
-      const rememberMe = this.loginForm.get('rememberMe')?.value;
-
-      this.loading = true;
-      this.authenticationService
-          .login(email.toLowerCase(), password)
-          .subscribe(
-              data => {
-                  if (rememberMe) {
-                      localStorage.setItem('savedUserEmail', email);
-                  } else {
-                      localStorage.removeItem('savedUserEmail');
-                  }
-                  this.router.navigate(['/']);
-              },
-              error => {
-                  this.notificationService.openSnackBar(error.error);
-                  this.loading = false;
-              }
-          ); */
-  }
-
-  resetPassword() {
-      this.router.navigate(['/auth/password-reset-request']);
-  }
+    onSubmit(): void {
+        if (this.loginForm.invalid) {
+            this.loginForm.markAllAsTouched();
+        } else {
+            this.authService.login(this.loginForm.value as LoginFormValue)
+        }
+    }
 }

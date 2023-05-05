@@ -4,7 +4,7 @@
   </button>
   <span appFontSize>Mantenedor de Alumnos (para mas opciones haga click en menu hamburguesa)</span>
   <span class="spacer"></span>
-  <button mat-icon-button class="icon favorite-icon">
+  <button mat-icon-button class="icon favorite-icon" (click)="logout()">
     <mat-icon>exit_to_app</mat-icon>
   </button>
 </mat-toolbar>
@@ -14,7 +14,7 @@
       <button color="primary" (click)="navigate('alumns')" class="my-10" mat-raised-button>
         Lista de alumnos
       </button>
-      <button color="primary" (click)="navigate('courses')" class="my-10" mat-raised-button>
+      <button color="primary" [routerLink]="'courses'" class="my-10" mat-raised-button>
         Cursos
       </button>
     </div>

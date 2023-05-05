@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: CoursesDetailComponent,
+    component: CoursesDetailComponent
   },
 ];
 

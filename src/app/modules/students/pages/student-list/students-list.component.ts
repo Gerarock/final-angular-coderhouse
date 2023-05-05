@@ -79,9 +79,7 @@ export class StudentsListComponent {
     );
   }
 
-  detailStudent(studentId: number): void {
-    console.log('kkk: ', studentId);
-    
+  detailStudent(studentId: number): void {    
     this.router.navigate([studentId], {
       relativeTo: this.activatedRoute
     });

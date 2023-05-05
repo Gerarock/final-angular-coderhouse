@@ -1,0 +1,55 @@
+{
+  "usuarios": [
+    {
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "user": "test",
+      "password": "test",
+      "token": "eqwueh8j213nwe8dsndsahui8",
+      "role": "admin",
+      "id": 1
+    }
+  ],
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "edad": "38",
+      "direccion": "direccion 1",
+      "email": "test1@gmail.com"
+    },
+    {
+      "id": 2,
+      "nombre": "Sebastian",
+      "apellido": "Gomez",
+      "edad": "24",
+      "direccion": "direccion 2",
+      "email": "test2@gmail.com"
+    },
+    {
+      "id": 3,
+      "nombre": "Barbara",
+      "apellido": "Gonzalez",
+      "edad": "25",
+      "direccion": "direccion 3",
+      "email": "test3@gmail.com"
+    },
+    {
+      "id": 4,
+      "nombre": "Nicole",
+      "apellido": "Lopez",
+      "edad": "33",
+      "direccion": "direccion 4",
+      "email": "test4@gmail.com"
+    },
+    {
+      "id": 5,
+      "nombre": "Jorge",
+      "apellido": "Sanchez",
+      "edad": "37",
+      "direccion": "direccion 5",
+      "email": "test5@gmail.com"
+    }
+  ]
+}

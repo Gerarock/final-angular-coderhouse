@@ -1,10 +1,28 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 14px;
 }
+
+.mat-mdc-form-field-hint-wrapper, .mat-mdc-form-field-error-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 5px !important;
+}
+
+
+
+
+
+
 
 .full-width {
     width: 100%;

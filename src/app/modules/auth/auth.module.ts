@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginRoutingModule } from './login-routing.module';
+import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -16,7 +16,7 @@ import { LoginComponent } from './pages/login/login.component';
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule,
+    AuthRoutingModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
@@ -29,4 +29,4 @@ import { LoginComponent } from './pages/login/login.component';
     LoginComponent
   ]
 })
-export class LoginModule { }
+export class AuthModule { }
