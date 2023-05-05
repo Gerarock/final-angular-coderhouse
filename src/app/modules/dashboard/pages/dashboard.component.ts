@@ -9,16 +9,16 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
 
   constructor(private router: Router) { }
-  
+
   showFiller = false;
 
   navigate(value: string) {
     switch (value) {
-      case 'listAlumn':
+      case 'alumns':
         this.router.navigate(['students']);
         break;
-      case 'cardAlumn':
-        this.router.navigate(['/cards']);
+      case 'courses':
+        this.router.navigate(['courses']);
         break;
     }
   }

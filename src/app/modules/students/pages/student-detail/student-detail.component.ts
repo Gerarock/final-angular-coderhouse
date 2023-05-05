@@ -16,7 +16,7 @@ export class StudentDetailComponent implements OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private studentService: StudentsService,
+    private studentService: StudentsService
   ) {
     this.studentService.getAlumnsById(parseInt(this.activatedRoute.snapshot.params['id']))
       .pipe(takeUntil(this.destroyed$))

@@ -7,7 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 import { StudentsModule } from '../students/students.module';
+import { CoursesModule } from '../courses/courses.module';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,9 @@ import { StudentsModule } from '../students/students.module';
     MatIconModule,
     MatButtonModule,
     MatListModule,
+    CoursesModule,
     StudentsModule,
-    RouterModule.forChild([
-      { path: 'students', loadChildren: () => import('../students/students.module').then((m) => m.StudentsModule) },
-    ])
+    DashboardRoutingModule
   ],
   exports: [
     DashboardComponent
