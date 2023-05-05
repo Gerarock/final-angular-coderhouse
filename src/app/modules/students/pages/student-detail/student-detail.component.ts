@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { IStudent } from 'src/app/interfaces/student';
-import { StudentsService } from 'src/app/services/students.service';
+import { IStudent } from 'src/app/core/models/student';
+import { StudentsService } from 'src/app/modules/students/services/students.service';
 
 @Component({
   selector: 'app-student-detail',

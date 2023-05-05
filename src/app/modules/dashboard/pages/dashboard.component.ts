@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import links from './nav-items';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +11,6 @@ export class DashboardComponent {
   constructor(private router: Router) { }
   
   showFiller = false;
-  links = links;
 
   navigate(value: string) {
     switch (value) {

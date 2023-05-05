@@ -2,16 +2,16 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IStudent } from 'src/app/interfaces/student';
-import { StudentsService } from 'src/app/services/students.service';
-import { StudentFormComponent } from './student-form/student-form.component';
+import { IStudent } from 'src/app/core/models/student';
+import { StudentsService } from 'src/app/modules/students/services/students.service';
+import { StudentCreateComponent } from '../student-create/student-create.component';
 
 @Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: ['./students.component.scss']
+  selector: 'app-students-list',
+  templateUrl: './students-list.component.html',
+  styleUrls: ['./students-list.component.scss']
 })
-export class StudentsComponent {
+export class StudentsListComponent {
 
   dataSource = new MatTableDataSource<IStudent>();
 
@@ -35,7 +35,7 @@ export class StudentsComponent {
   }
 
   createStudent(): void {
-    const dialog = this.matDialog.open(StudentFormComponent, {
+    const dialog = this.matDialog.open(StudentCreateComponent, {
       data: {
         value: '',
         action: 'Agregar'
@@ -56,7 +56,7 @@ export class StudentsComponent {
   }
 
   editStudent(dataToEdit: IStudent): void {
-    const dialog = this.matDialog.open(StudentFormComponent, {
+    const dialog = this.matDialog.open(StudentCreateComponent, {
       data: {
         value: dataToEdit,
         action: 'Editar'

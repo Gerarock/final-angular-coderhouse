@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-student-form',
-  templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.scss']
+  selector: 'app-student-create',
+  templateUrl: './student-create.component.html',
+  styleUrls: ['./student-create.component.scss']
 })
-export class StudentFormComponent {
+export class StudentCreateComponent {
 
   public titleActionForm: string;
 
@@ -20,7 +20,7 @@ export class StudentFormComponent {
   });
 
   constructor(
-    private dialogRef: MatDialogRef<StudentFormComponent>,
+    private dialogRef: MatDialogRef<StudentCreateComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
   ) {
     debugger

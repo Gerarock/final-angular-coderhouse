@@ -7,17 +7,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StudentsComponent } from './students.component';
+import { StudentsListComponent } from './pages/student-list/students-list.component';
 import { RouterModule } from '@angular/router';
-import { StudentsRoutingModule } from './students-routing.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
-import { StudentFormComponent } from './student-form/student-form.component';
-import { StudentDetailComponent } from './student-detail/student-detail.component';
+import { StudentCreateComponent } from './pages/student-create/student-create.component';
+import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
 
 @NgModule({
   declarations: [
-    StudentsComponent,
-    StudentFormComponent,
+    StudentsListComponent,
+    StudentCreateComponent,
     StudentDetailComponent
   ],
   imports: [
@@ -33,7 +32,7 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
     RouterModule.forChild([
       {
         path: '',
-        component: StudentsComponent
+        component: StudentsListComponent
       },
       {
         path: ':id',
@@ -42,7 +41,7 @@ import { StudentDetailComponent } from './student-detail/student-detail.componen
     ]),
   ],
   exports: [
-    StudentsComponent
+    StudentsListComponent
   ]
 })
 export class StudentsModule { }

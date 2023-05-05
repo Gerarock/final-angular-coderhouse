@@ -1,4 +1,4 @@
-import { IStudent } from "../interfaces/student";
+import { IStudent } from "../core/models/student";
 
 export const MOCK_DATA: IStudent[] = [
     { id: 1, nombre: 'Juan', apellido: 'Sosa', fecha_registro: new Date() },
