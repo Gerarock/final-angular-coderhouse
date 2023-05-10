@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { StudentsListComponent } from './pages/student-list/students-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatTableModule,
     MatIconModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatPaginatorModule
   ],
   exports: [
     StudentCreateComponent,

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { IStudent } from 'src/app/core/models/student';
 import { StudentsService } from 'src/app/modules/students/services/students.service';
 import { StudentCreateComponent } from '../student-create/student-create.component';
 import { Subject } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-students-list',
@@ -13,6 +14,8 @@ import { Subject } from 'rxjs';
   styleUrls: ['./students-list.component.scss']
 })
 export class StudentsListComponent implements OnInit, OnDestroy {
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   destroyed$ = new Subject<void>();
   dataSource = new MatTableDataSource<IStudent>();
@@ -34,6 +37,7 @@ export class StudentsListComponent implements OnInit, OnDestroy {
     this.studentsService.getAlumns()
       .subscribe((alumns) => {
         this.dataSource.data = alumns;
+        this.dataSource.paginator = this.paginator;
       });
     this.studentsService.getApiAlumns();
   }

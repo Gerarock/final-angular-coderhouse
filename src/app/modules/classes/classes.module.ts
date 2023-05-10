@@ -12,6 +12,9 @@ import { ClassesCreateComponent } from './pages/classes-create/classes-create.co
 import { ClassesDetailComponent } from './pages/classes-detail/classes-detail.component';
 import { ClassesListComponent } from './pages/classes-list/classes-list.component';
 import { ClassesRoutingModule } from './classes-routing.module';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { ClassesRoutingModule } from './classes-routing.module';
     MatIconModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatPaginatorModule
   ],
   exports: [
     ClassesCreateComponent,

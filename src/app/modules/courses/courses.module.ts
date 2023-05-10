@@ -12,6 +12,9 @@ import { CoursesCreateComponent } from './pages/courses-create/courses-create.co
 import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.component';
 import { CoursesListComponent } from './pages/courses-list/courses-list.component';
 import { CoursesRoutingModule } from './courses-routing.module';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { CoursesRoutingModule } from './courses-routing.module';
     MatIconModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatPaginatorModule
   ],
   exports: [
     CoursesCreateComponent,

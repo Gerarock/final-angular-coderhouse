@@ -50,6 +50,54 @@
       "edad": "37",
       "direccion": "direccion 5",
       "email": "test5@gmail.com"
+    },
+    {
+      "id": 6,
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "edad": "38",
+      "direccion": "direccion 1",
+      "email": "test1@gmail.com"
+    },
+    {
+      "id": 7,
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "edad": "38",
+      "direccion": "direccion 1",
+      "email": "test1@gmail.com"
+    },
+    {
+      "id": 8,
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "edad": "38",
+      "direccion": "direccion 1",
+      "email": "test1@gmail.com"
+    },
+    {
+      "id": 9,
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "edad": "38",
+      "direccion": "direccion 1",
+      "email": "test1@gmail.com"
+    },
+    {
+      "id": 10,
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "edad": "38",
+      "direccion": "direccion 1",
+      "email": "test1@gmail.com"
+    },
+    {
+      "id": 11,
+      "nombre": "Gerardo",
+      "apellido": "Veliz",
+      "edad": "38",
+      "direccion": "direccion 1",
+      "email": "test1@gmail.com"
     }
   ],
   "cursos": [
@@ -119,11 +167,46 @@
       "horario": "19:00"
     },
     {
-      "id": 1,
+      "id": 2,
       "clase": "Javascript",
       "profesor": "Gonzalo",
       "alumno": "Sebastián",
       "horario": "20:00"
+    },
+    {
+      "id": 3,
+      "clase": "Desarrollo Web",
+      "profesor": "Raul",
+      "alumno": "Gerardo",
+      "horario": "19:00"
+    },
+    {
+      "id": 4,
+      "clase": "Angular",
+      "profesor": "Andrea",
+      "alumno": "Gerardo",
+      "horario": "19:00"
+    },
+    {
+      "id": 5,
+      "clase": "Angular",
+      "profesor": "Gabriela",
+      "alumno": "Gerardo",
+      "horario": "19:00"
+    },
+    {
+      "id": 6,
+      "clase": "Javascript",
+      "profesor": "Rodrigo",
+      "alumno": "Gerardo",
+      "horario": "19:00"
+    },
+    {
+      "id": 7,
+      "clase": "Angular",
+      "profesor": "Alonso",
+      "alumno": "Gerardo",
+      "horario": "19:00"
     }
   ]
 }

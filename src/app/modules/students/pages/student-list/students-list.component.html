@@ -4,8 +4,8 @@
             <mat-card-content>
                 <h2>Lista de Alumnos</h2>
                 <mat-form-field class="w-full">
-                    <mat-label>Filter</mat-label>
-                    <input matInput (keyup)="aplicarFiltros($event)" placeholder="Ex. ium" #input>
+                    <mat-label>Filtro</mat-label>
+                    <input matInput (keyup)="aplicarFiltros($event)" placeholder="ingrese alumno" #input>
                 </mat-form-field>
                 <table mat-table [dataSource]="dataSource" matSort>
                     <ng-container matColumnDef="id">
@@ -55,6 +55,8 @@
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
+                <mat-paginator [length]="100" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+                </mat-paginator>
             </mat-card-content>
         </mat-card>
     </div>

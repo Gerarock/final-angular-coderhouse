@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { IClasse } from 'src/app/core/models/classes';
 import { ClassesService } from '../../services/classes.service';
 import { ClassesCreateComponent } from '../classes-create/classes-create.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-classes-list',
@@ -14,6 +15,8 @@ import { ClassesCreateComponent } from '../classes-create/classes-create.compone
 })
 
 export class ClassesListComponent implements OnInit, OnDestroy {
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   destroyed$ = new Subject<void>();
   dataSource = new MatTableDataSource<IClasse>();
@@ -35,6 +38,7 @@ export class ClassesListComponent implements OnInit, OnDestroy {
     this.classesService.getClasses()
       .subscribe((classes) => {
         this.dataSource.data = classes;
+        this.dataSource.paginator = this.paginator;
       });
     this.classesService.getApiClasses();
   }

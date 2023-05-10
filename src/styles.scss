@@ -25,11 +25,25 @@ body {
 
 .btn-fixed {
     position: fixed !important;
-    bottom: 55px;
-    right: 15px;
+    bottom: 70px;
+    right: 30px;
 }
 
 .container {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.mdc-fab {
+    width: 70px !important;
+    height: 70px !important;
+}
+
+.material-icons {
+    font-size: 30px !important;
+}
+
+.mat-icon {
+    height: 30px !important;
+    width: 30px !important;
 }
