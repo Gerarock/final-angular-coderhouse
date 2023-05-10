@@ -1,6 +1,8 @@
 export interface IStudent {
-    id: number;
-    nombre: string;
-    apellido: string;
-    fecha_registro: Date;
-  }
+  id: number;
+  nombre: string;
+  apellido: string;
+  edad: string;
+  direccion: string;
+  email: string;
+}

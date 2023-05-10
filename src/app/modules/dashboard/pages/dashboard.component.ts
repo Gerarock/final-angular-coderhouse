@@ -10,22 +10,10 @@ import { AuthService } from '../../auth/services/auth.service';
 export class DashboardComponent {
 
   constructor(
-    private router: Router,
     private authService: AuthService
   ) { }
 
   showFiller = false;
-
-  navigate(value: string) {
-    switch (value) {
-      case 'alumns':
-        this.router.navigate(['students']);
-        break;
-      case 'courses':
-        this.router.navigate(['courses']);
-        break;
-    }
-  }
 
   logout() {
     this.authService.logout();

@@ -2,7 +2,7 @@
   <button mat-icon-button class="icon" (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span appFontSize>Mantenedor de Alumnos (para mas opciones haga click en menu hamburguesa)</span>
+  <span appFontSize>Mantenedor de Alumnos</span>
   <span class="spacer"></span>
   <button mat-icon-button class="icon favorite-icon" (click)="logout()">
     <mat-icon>exit_to_app</mat-icon>
@@ -11,11 +11,14 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side" opened>
     <div class="dflex">
-      <button color="primary" (click)="navigate('alumns')" class="my-10" mat-raised-button>
-        Lista de alumnos
+      <button color="primary" [routerLink]="['students', 'studentsList']" class="my-10" mat-raised-button>
+        Alumnos
       </button>
-      <button color="primary" [routerLink]="'courses'" class="my-10" mat-raised-button>
+      <button color="primary" [routerLink]="['courses', 'coursesList']" class="my-10" mat-raised-button>
         Cursos
+      </button>
+      <button color="primary" [routerLink]="['classes', 'classesList']" class="my-10" mat-raised-button>
+        Clases
       </button>
     </div>
   </mat-drawer>

@@ -5,7 +5,7 @@ import { StudentDetailComponent } from './pages/student-detail/student-detail.co
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'studentsList',
     component: StudentsListComponent
   },
   {

@@ -15,8 +15,7 @@ export class ErrorMessagesPipe implements PipeTransform {
       email: 'El valor debe ser un e-mail valido',
       maxlength: '..',
       min: 'Debe ser mayor a ...',
-      max: '',
-      noHomero: 'El valor introducido no puede ser la palabra Homero'
+      max: ''
     }
 
     if (opciones[error.key]) {

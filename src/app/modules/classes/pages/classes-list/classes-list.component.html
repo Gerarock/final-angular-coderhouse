@@ -1,0 +1,59 @@
+<div class="mb-3">
+    <button (click)="createClasses()" color="primary" mat-flat-button>
+        <mat-icon>add</mat-icon>
+        Agregar Clase
+    </button>
+</div>
+<mat-form-field class="w-full">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="aplicarFiltros($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+<table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let student"> {{student.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="clase">
+        <th mat-header-cell *matHeaderCellDef>Clase</th>
+        <td mat-cell *matCellDef="let student">{{student.clase }}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="profesor">
+        <th mat-header-cell *matHeaderCellDef>Profesor</th>
+        <td mat-cell *matCellDef="let student"> {{student.profesor}} </td>
+    </ng-container>
+    <ng-container matColumnDef="alumno">
+        <th mat-header-cell *matHeaderCellDef>Alumno</th>
+        <td mat-cell *matCellDef="let student"> {{student.alumno }} </td>
+    </ng-container>
+    <ng-container matColumnDef="horario">
+        <th mat-header-cell *matHeaderCellDef>Horario</th>
+        <td mat-cell *matCellDef="let student"> {{student.horario }} </td>
+    </ng-container>
+    <ng-container matColumnDef="ver_detalle">
+        <th mat-header-cell *matHeaderCellDef>Detalle</th>
+        <td mat-cell *matCellDef="let student">
+            <button mat-icon-button (click)="detailClasse(student.detalle)">
+                <mat-icon>visibility</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let student">
+            <button mat-icon-button (click)="deleteClasse(student)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let student">
+            <button mat-icon-button (click)="editClasse(student)">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

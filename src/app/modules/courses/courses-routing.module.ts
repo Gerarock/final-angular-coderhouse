@@ -5,7 +5,7 @@ import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.co
 
 const routes: Routes = [
   {
-    path: 'courses',
+    path: 'coursesList',
     component: CoursesListComponent
   },
   {

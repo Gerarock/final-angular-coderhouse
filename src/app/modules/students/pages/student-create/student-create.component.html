@@ -4,21 +4,32 @@
     <div class="col-12 field">
       <mat-form-field class="w-full">
         <mat-label>Nombre</mat-label>
-        <input
-          [formControl]="nameControl"
-          type="text"
-          matInput>
+        <input [formControl]="nameControl" type="text" matInput>
         <mat-error *ngFor="let error of nameControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Apellido</mat-label>
+        <input [formControl]="lastNameControl" type="text" matInput>
+        <mat-error *ngFor="let error of lastNameControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
       </mat-form-field>
     </div>
     <div class="col-12 field">
       <mat-form-field class="w-full">
-        <mat-label>Apellido</mat-label>
-        <input
-          [formControl]="lastNameControl"
-          type="text"
-          matInput>
-        <mat-error *ngFor="let error of lastNameControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+        <mat-label>Edad</mat-label>
+        <input [formControl]="ageControl" type="text" matInput>
+        <mat-error *ngFor="let error of ageControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Dirección</mat-label>
+        <input [formControl]="directionControl" type="text" matInput>
+        <mat-error *ngFor="let error of directionControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-12 field">
+      <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input [formControl]="emailControl" type="text" matInput>
+        <mat-error *ngFor="let error of emailControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
       </mat-form-field>
     </div>
   </form>

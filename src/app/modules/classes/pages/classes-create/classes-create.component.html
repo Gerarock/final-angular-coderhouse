@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>{{titleActionForm}} Cursos</h1>
+<div mat-dialog-content>
+    <form class="grid formgrid" [formGroup]="classeForm">
+        <div class="col-12 field">
+            <mat-form-field class="w-full">
+                <mat-label>Clase</mat-label>
+                <input [formControl]="classeControl" type="text" matInput>
+                <mat-error *ngFor="let error of classeControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Profesor</mat-label>
+                <input [formControl]="teacherControl" type="text" matInput>
+                <mat-error *ngFor="let error of teacherControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 field">
+            <mat-form-field class="w-full">
+                <mat-label>Alumno</mat-label>
+                <input [formControl]="studentControl" type="text" matInput>
+                <mat-error *ngFor="let error of studentControl.errors | keyvalue">{{ error | errorMessages
+                    }}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Horario</mat-label>
+                <input [formControl]="scheduleControl" type="text" matInput>
+                <mat-error *ngFor="let error of scheduleControl.errors | keyvalue">{{ error | errorMessages
+                    }}</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button (click)="editClasse()" mat-button>Aceptar</button>
+</div>

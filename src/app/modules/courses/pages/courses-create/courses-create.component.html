@@ -1,1 +1,35 @@
-<p>courses-create works!</p>
+<h1 mat-dialog-title>{{titleActionForm}} Cursos</h1>
+<div mat-dialog-content>
+    <form class="grid formgrid" [formGroup]="courseForm">
+        <div class="col-12 field">
+            <mat-form-field class="w-full">
+                <mat-label>Nombre</mat-label>
+                <input [formControl]="nameControl" type="text" matInput>
+                <mat-error *ngFor="let error of nameControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Código</mat-label>
+                <input [formControl]="codeControl" type="text" matInput>
+                <mat-error *ngFor="let error of codeControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-12 field">
+            <mat-form-field class="w-full">
+                <mat-label>Horario</mat-label>
+                <input [formControl]="scheduleControl" type="text" matInput>
+                <mat-error *ngFor="let error of scheduleControl.errors | keyvalue">{{ error | errorMessages
+                    }}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+                <mat-label>Profesor</mat-label>
+                <input [formControl]="teacherControl" type="text" matInput>
+                <mat-error *ngFor="let error of teacherControl.errors | keyvalue">{{ error | errorMessages
+                    }}</mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button (click)="editCourse()" mat-button>Aceptar</button>
+</div>

@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IStudent } from 'src/app/core/models/student';
 import { StudentsService } from 'src/app/modules/students/services/students.service';
 import { StudentCreateComponent } from '../student-create/student-create.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
   styleUrls: ['./students-list.component.scss']
 })
-export class StudentsListComponent {
+export class StudentsListComponent implements OnInit, OnDestroy {
 
+  destroyed$ = new Subject<void>();
   dataSource = new MatTableDataSource<IStudent>();
-
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'fecha_registro', 'ver_detalle', 'eliminar', 'editar'];
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'edad', 'direccion', 'email', 'ver_detalle', 'eliminar', 'editar'];
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement)?.value;
@@ -26,12 +27,15 @@ export class StudentsListComponent {
     private matDialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private studentsService: StudentsService,
-  ) {
+    private studentsService: StudentsService
+  ) { }
+
+  ngOnInit(): void {
     this.studentsService.getAlumns()
       .subscribe((alumns) => {
         this.dataSource.data = alumns;
       });
+    this.studentsService.getApiAlumns();
   }
 
   createStudent(): void {
@@ -79,10 +83,15 @@ export class StudentsListComponent {
     );
   }
 
-  detailStudent(studentId: number): void {    
+  detailStudent(studentId: number): void {
     this.router.navigate([studentId], {
       relativeTo: this.activatedRoute
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
 }

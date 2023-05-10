@@ -13,20 +13,28 @@ export class StudentCreateComponent {
 
   nameControl = new FormControl('', [Validators.required]);
   lastNameControl = new FormControl('', [Validators.required]);
+  ageControl = new FormControl('', [Validators.required]);
+  directionControl = new FormControl('', [Validators.required]);
+  emailControl = new FormControl('', [Validators.required]);
 
   studentsForm = new FormGroup({
     nombre: this.nameControl,
     apellido: this.lastNameControl,
+    edad: this.ageControl,
+    direccion: this.directionControl,
+    email: this.emailControl
   });
 
   constructor(
     private dialogRef: MatDialogRef<StudentCreateComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
   ) {
-    debugger
     if (data) {
       this.nameControl.setValue(data.value.nombre);
       this.lastNameControl.setValue(data.value.apellido);
+      this.ageControl.setValue(data.value.edad);
+      this.directionControl.setValue(data.value.direccion);
+      this.emailControl.setValue(data.value.email);
     }
     this.titleActionForm = data.action;
   }

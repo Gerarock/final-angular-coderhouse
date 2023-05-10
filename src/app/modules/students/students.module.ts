@@ -12,6 +12,8 @@ import { StudentCreateComponent } from './pages/student-create/student-create.co
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { StudentsListComponent } from './pages/student-list/students-list.component';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { StudentsListComponent } from './pages/student-list/students-list.compon
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    FlexLayoutModule
   ],
   exports: [
     StudentCreateComponent,
