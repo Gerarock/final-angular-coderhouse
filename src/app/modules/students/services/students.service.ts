@@ -27,7 +27,7 @@ export class StudentsService {
     }
 
     getApiAlumns(): void {
-        this.httpClient.get<IStudent[]>(`${environment.apiBaseUrl}/alumnos`)
+        this.httpClient.get<IStudent[]>(`${environment.apiBaseUrl}/students`)
             .subscribe({
                 next: (alumns) => {
                     this.alumns$.next(alumns);

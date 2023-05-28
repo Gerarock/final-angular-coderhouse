@@ -1,21 +1,23 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
-import { IStudent } from 'src/app/core/models/student';
-import { StudentsService } from 'src/app/modules/students/services/students.service';
-import { StudentCreateComponent } from '../student-create/student-create.component';
 import { Subject } from 'rxjs';
+import { IInscription } from 'src/app/core/models/inscription';
+import { InscriptionsService } from '../../services/inscriptions.service';
+import { InscriptionsCreateComponent } from '../inscriptions-create/inscriptions-create.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import Swal from 'sweetalert2';
+import { InscriptionsDetailComponent } from '../inscriptions-detail/inscriptions-detail.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
-  selector: 'app-students-list',
-  templateUrl: './students-list.component.html',
-  styleUrls: ['./students-list.component.scss']
+  selector: 'app-inscriptions-list',
+  templateUrl: './inscriptions-list.component.html',
+  styleUrls: ['./inscriptions-list.component.scss']
 })
-export class StudentsListComponent implements OnInit, OnDestroy {
+
+export class InscriptionsListComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true })
@@ -23,8 +25,8 @@ export class StudentsListComponent implements OnInit, OnDestroy {
   sort: MatSort = new MatSort;
 
   destroyed$ = new Subject<void>();
-  dataSource = new MatTableDataSource<IStudent>();
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'edad', 'direccion', 'email', 'fechaRegistro', 'ver_detalle', 'eliminar', 'editar'];
+  dataSource = new MatTableDataSource<IInscription>();
+  displayedColumns: string[] = ['id', 'curso', 'inicioCurso', 'finCurso', 'alumno', 'edad', 'direccion', 'email', 'fechaRegistro', 'ver_detalle', 'eliminar', 'editar'];
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement)?.value;
@@ -33,23 +35,22 @@ export class StudentsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private matDialog: MatDialog,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private studentsService: StudentsService
+    private inscriptionsService: InscriptionsService,
+    private _bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit(): void {
-    this.studentsService.getAlumns()
-      .subscribe((alumns) => {
-        this.dataSource.data = alumns;
+    this.inscriptionsService.getInscriptions()
+      .subscribe((inscriptions) => {
+        this.dataSource.data = inscriptions;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
-    this.studentsService.getApiAlumns();
+    this.inscriptionsService.getApiInscriptionsWhitAll();
   }
 
-  createStudent(): void {
-    const dialog = this.matDialog.open(StudentCreateComponent, {
+  createInscription(): void {
+    const dialog = this.matDialog.open(InscriptionsCreateComponent, {
       data: {
         value: '',
         action: 'Agregar'
@@ -69,8 +70,8 @@ export class StudentsListComponent implements OnInit, OnDestroy {
     })
   }
 
-  editStudent(dataToEdit: IStudent): void {
-    const dialog = this.matDialog.open(StudentCreateComponent, {
+  editInscription(dataToEdit: IInscription): void {
+    const dialog = this.matDialog.open(InscriptionsCreateComponent, {
       data: {
         value: dataToEdit,
         action: 'Editar'
@@ -79,36 +80,36 @@ export class StudentsListComponent implements OnInit, OnDestroy {
     dialog.afterClosed().subscribe((formValue) => {
       if (formValue) {
         this.dataSource.data = this.dataSource.data.map(
-          (selectedStudent) => selectedStudent.id === dataToEdit.id
-            ? ({ ...selectedStudent, ...formValue })
-            : selectedStudent
+          (selectedInscription) => selectedInscription.id === dataToEdit.id
+            ? ({ ...selectedInscription, ...formValue })
+            : selectedInscription
         );
       }
     })
   }
 
-  deleteStudent(dataToDelete: IStudent): void {
+  deleteInscription(dataToDelete: IInscription): void {
     Swal.fire({
-      title: 'Vas a eliminar el alumno ' + dataToDelete.nombre + ' ' + dataToDelete.apellido,
+      title: 'Vas a eliminar la inscripción ',
       text: "¿Realmente deseas continuar?",
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#dc3545',
       confirmButtonColor: '#28a745',
-      confirmButtonText: 'Si, eliminar alumno',
+      confirmButtonText: 'Si, eliminar inscripción',
       cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
 
         this.dataSource.data = this.dataSource.data.filter(
-          (selectedStudent) => selectedStudent.id !== dataToDelete.id
+          (selectedInscription) => selectedInscription.id !== dataToDelete.id
         );
 
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'El Alumno ' + dataToDelete.nombre + ' ' + dataToDelete.apellido + ' fue eliminado',
+          title: 'La Inscripción ' + ' fue eliminado',
           showConfirmButton: false,
           timerProgressBar: true,
           timer: 1800,
@@ -117,10 +118,11 @@ export class StudentsListComponent implements OnInit, OnDestroy {
     })
   }
 
-  detailStudent(studentId: number): void {
-    this.router.navigate([studentId], {
-      relativeTo: this.activatedRoute
-    });
+  detailInscription(inscriptionId: number): void {
+    this._bottomSheet.open(InscriptionsDetailComponent);
+    /*     this.router.navigate([inscriptionId], {
+          relativeTo: this.activatedRoute
+        }); */
   }
 
   ngOnDestroy(): void {

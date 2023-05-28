@@ -1,5 +1,5 @@
 # AngularFinalCoderhouse
 
-json-server - -watch db.json 
+json-server --watch database/db.json 
 
 npm install -g json-server

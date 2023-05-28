@@ -1,57 +1,69 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center none">
-    <div fxFlex="93%">
+    <div fxFlex="95%">
         <mat-card>
             <mat-card-content>
-                <h2>Lista de Alumnos</h2>
+                <h2>Lista de Inscripciones</h2>
                 <mat-form-field class="w-full">
                     <mat-label>Filtro</mat-label>
-                    <input matInput (keyup)="aplicarFiltros($event)" placeholder="ingrese alumno" #input>
+                    <input matInput (keyup)="aplicarFiltros($event)" placeholder="ingrese inscripción" #input>
                 </mat-form-field>
                 <table mat-table [dataSource]="dataSource" matSort>
                     <ng-container matColumnDef="id">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-                        <td mat-cell *matCellDef="let student"> {{student.id}} </td>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.id}} </td>
                     </ng-container>
-                    <ng-container matColumnDef="nombreCompleto">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                        <td mat-cell *matCellDef="let student"> {{student | fullName : 'mayuscula' }} </td>
+                    <ng-container matColumnDef="curso">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.subject.nombre}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="inicioCurso">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Inicio de Curso </th>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.course.fecha_inicio | date: 'dd/MM/YYYY'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="finCurso">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fin de Curso </th>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.course.fecha_fin | date: 'dd/MM/YYYY'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="alumno">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Alumno </th>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.student | fullName : 'mayuscula'}} </td>
                     </ng-container>
                     <ng-container matColumnDef="edad">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Edad </th>
-                        <td mat-cell *matCellDef="let student"> {{student.edad}} </td>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.student.edad}} </td>
                     </ng-container>
                     <ng-container matColumnDef="direccion">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
-                        <td mat-cell *matCellDef="let student"> {{student.direccion}} </td>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.student.direccion}} </td>
                     </ng-container>
                     <ng-container matColumnDef="email">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                        <td mat-cell *matCellDef="let student"> {{student.email}} </td>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.student.email}} </td>
                     </ng-container>
                     <ng-container matColumnDef="fechaRegistro">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Registro </th>
-                        <td mat-cell *matCellDef="let student"> {{student.fecha_registro | date: 'dd/MM/YYYY'}} </td>
+                        <td mat-cell *matCellDef="let inscription"> {{inscription.student.fecha_registro | date: 'dd/MM/YYYY'}} </td>
                     </ng-container>
                     <ng-container matColumnDef="ver_detalle">
                         <th mat-header-cell *matHeaderCellDef>Detalle</th>
-                        <td mat-cell *matCellDef="let student">
-                            <button mat-icon-button (click)="detailStudent(student.id)">
+                        <td mat-cell *matCellDef="let inscription">
+                            <button mat-icon-button (click)="detailInscription(inscription.id)">
                                 <mat-icon>visibility</mat-icon>
                             </button>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="eliminar">
                         <th mat-header-cell *matHeaderCellDef>Eliminar</th>
-                        <td mat-cell *matCellDef="let student">
-                            <button mat-icon-button (click)="deleteStudent(student)">
+                        <td mat-cell *matCellDef="let inscription">
+                            <button mat-icon-button (click)="deleteInscription(inscription)">
                                 <mat-icon>close</mat-icon>
                             </button>
                         </td>
                     </ng-container>
                     <ng-container matColumnDef="editar">
                         <th mat-header-cell *matHeaderCellDef>Editar</th>
-                        <td mat-cell *matCellDef="let student">
-                            <button mat-icon-button (click)="editStudent(student)">
+                        <td mat-cell *matCellDef="let inscription">
+                            <button mat-icon-button (click)="editInscription(inscription)">
                                 <mat-icon>edit</mat-icon>
                             </button>
                         </td>
@@ -65,6 +77,6 @@
         </mat-card>
     </div>
 </div>
-<button (click)="createStudent()" class="btn-fixed" mat-fab color="warn">
+<button (click)="createInscription()" class="btn-fixed" mat-fab color="warn">
     <mat-icon>add</mat-icon>
 </button>

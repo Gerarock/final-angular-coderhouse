@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { ICourse } from 'src/app/core/models/course';
+import { ICourse, ICourseWhitSubject } from 'src/app/core/models/course';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -27,7 +27,16 @@ export class CoursesService {
   }
 
   getApiCourses(): void {
-    this.httpClient.get<ICourse[]>(`${environment.apiBaseUrl}/cursos`)
+    this.httpClient.get<ICourse[]>(`${environment.apiBaseUrl}/courses`)
+      .subscribe({
+        next: (course) => {
+          this.courses$.next(course);
+        }
+      })
+  }
+
+  getApiCoursesWhitSubject(): void {
+    this.httpClient.get<ICourseWhitSubject[]>(`${environment.apiBaseUrl}/courses?_expand=subject`)
       .subscribe({
         next: (course) => {
           this.courses$.next(course);

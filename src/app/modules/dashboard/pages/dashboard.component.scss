@@ -1,5 +1,5 @@
 mat-toolbar {
-  height: 10%;
+  height: 64px;
 }
 
 .container {
@@ -29,4 +29,37 @@ mat-toolbar {
 
 .my-10 {
   margin: 10px 0px;
+}
+
+mat-icon.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
+  font-size: 25px !important;
+}
+
+mat-nav-list.mat-mdc-nav-list.mat-mdc-list-base.mdc-list.ng-tns-c5-0 {
+  width: 200px !important;
+}
+
+.sidenav {
+  padding: 0px !important;
+}
+
+.mdc-list-item {
+  padding-left: 25px !important;
+  padding-right: 40px;
+}
+
+mat-icon.mat-icon.notranslate.material-icons.mat-ligature-font.mat-icon-no-color {
+  padding-bottom: 3px;
+  padding-right: 10px;
+}
+
+#push-bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+mat-drawer.mat-drawer.sidenav.ng-tns-c5-0.ng-trigger.ng-trigger-transform.mat-drawer-side.mat-drawer-opened.ng-star-inserted {
+  min-width: 180px !important;
+  border-right: 1px solid #eee;
+  box-shadow: 6px 0 6px rgba(0, 0, 0, .1);
 }

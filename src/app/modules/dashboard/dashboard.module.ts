@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { StudentsModule } from '../students/students.module';
 import { CoursesModule } from '../courses/courses.module';
+import { InscriptionsModule } from '../inscriptions/inscriptions.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CoursesModule } from '../courses/courses.module';
     MatListModule,
     CoursesModule,
     StudentsModule,
+    InscriptionsModule,
     DashboardRoutingModule
   ],
   exports: [

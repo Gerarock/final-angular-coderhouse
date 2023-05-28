@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { skip } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { USUARIO_ADMIN_MOCK } from 'src/app/shared/mock/auth.mock.service';
+ 
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -43,10 +43,10 @@ describe('AuthService', () => {
     service.login(mockPayload);
 
     httpController.expectOne({
-      url: `${environment.apiBaseUrl}/usuarios?user=${mockPayload.user}&password=${mockPayload.password}`,
+      url: `${environment.apiBaseUrl}/users?user=${mockPayload.user}&password=${mockPayload.password}`,
       method: 'GET',
     }).flush([
-      USUARIO_ADMIN_MOCK
+     
     ])
   });
 

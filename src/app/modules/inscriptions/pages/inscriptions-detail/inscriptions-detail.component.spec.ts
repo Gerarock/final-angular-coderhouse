@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ClassesDetailComponent } from './classes-detail.component';
+import { InscriptionsDetailComponent } from './inscriptions-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('ClassesDetailComponent', () => {
-  let component: ClassesDetailComponent;
-  let fixture: ComponentFixture<ClassesDetailComponent>;
+describe('InscriptionsDetailComponent', () => {
+  let component: InscriptionsDetailComponent;
+  let fixture: ComponentFixture<InscriptionsDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule, RouterTestingModule],
-      declarations: [ClassesDetailComponent]
+      declarations: [InscriptionsDetailComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(ClassesDetailComponent);
+    fixture = TestBed.createComponent(InscriptionsDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

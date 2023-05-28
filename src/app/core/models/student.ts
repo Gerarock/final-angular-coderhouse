@@ -5,4 +5,5 @@ export interface IStudent {
   edad: string;
   direccion: string;
   email: string;
+  fecha_registro: Date;
 }

@@ -7,6 +7,8 @@ import { ICourse } from 'src/app/core/models/course';
 import { CoursesService } from '../../services/courses.service';
 import { CoursesCreateComponent } from '../courses-create/courses-create.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-courses-list',
@@ -16,10 +18,13 @@ import { MatPaginator } from '@angular/material/paginator';
 export class CoursesListComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true })
+
+  sort: MatSort = new MatSort;
 
   destroyed$ = new Subject<void>();
   dataSource = new MatTableDataSource<ICourse>();
-  displayedColumns: string[] = ['id', 'nombre', 'codigo', 'horario', 'profesor', 'ver_detalle', 'eliminar', 'editar'];
+  displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'fechaFin', 'fechaInicio', 'ver_detalle', 'eliminar', 'editar'];
 
   aplicarFiltros(ev: Event): void {
     const inputValue = (ev.target as HTMLInputElement)?.value;
@@ -38,8 +43,9 @@ export class CoursesListComponent implements OnInit, OnDestroy {
       .subscribe((courses) => {
         this.dataSource.data = courses;
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       });
-    this.coursesService.getApiCourses();
+    this.coursesService.getApiCoursesWhitSubject();
   }
 
   createCourses(): void {
@@ -82,9 +88,33 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   }
 
   deleteCourse(dataToDelete: ICourse): void {
-    this.dataSource.data = this.dataSource.data.filter(
-      (selectedCourse) => selectedCourse.id !== dataToDelete.id
-    );
+    Swal.fire({
+      title: 'Vas a eliminar el curso ',
+      text: "¿Realmente deseas continuar?",
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#dc3545',
+      confirmButtonColor: '#28a745',
+      confirmButtonText: 'Si, eliminar curso',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.dataSource.data = this.dataSource.data.filter(
+          (selectedCourse) => selectedCourse.id !== dataToDelete.id
+        );
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'El Curso ' + ' fue eliminado',
+          showConfirmButton: false,
+          timerProgressBar: true,
+          timer: 1800,
+        })
+      }
+    })
   }
 
   detailCourse(courseId: number): void {

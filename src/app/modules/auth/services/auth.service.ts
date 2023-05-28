@@ -6,8 +6,13 @@ import { environment } from 'src/environments/environment';
 import { User } from 'src/app/core/models/user.model';
 
 export interface LoginFormValue {
-  user: string;
+  id: number;
+  nombre: string;
+  apellido: string;
+  email: string;
   password: string;
+  token: string;
+  role: string
 }
 
 @Injectable({
@@ -28,7 +33,7 @@ export class AuthService {
 
   login(formValue: LoginFormValue): void {
     this.httClient.get<User[]>(
-      `${environment.apiBaseUrl}/usuarios`,
+      `${environment.apiBaseUrl}/users`,
       {
         params: {
           ...formValue
@@ -59,7 +64,7 @@ export class AuthService {
   verificaToken(): Observable<boolean> {
     const token = localStorage.getItem('token');
     return this.httClient.get<User[]>(
-      `${environment.apiBaseUrl}/usuarios?token=${token}`,
+      `${environment.apiBaseUrl}/users?token=${token}`,
       {
         headers: new HttpHeaders({
           'authorization': token || ''

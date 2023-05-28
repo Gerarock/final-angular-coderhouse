@@ -1,7 +1,10 @@
+import { ISubject } from "./subject";
 export interface ICourse {
     id: number;
-    nombre: string;
-    codigo: string;
-    horario: string;
-    profesor: string
+    subjectId: number;
+    fecha_fin: Date;
+    fecha_inicio: Date;
+}
+export interface ICourseWhitSubject extends ICourse {
+    subject: ISubject;
 }

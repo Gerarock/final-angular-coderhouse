@@ -5,3 +5,7 @@ table {
 th.mat-sort-header-sorted {
     color: black;
 }
+
+.mat-table .mat-row:hover {
+    background-color: rgba(0, 0, 0, 0.075) !important;
+}

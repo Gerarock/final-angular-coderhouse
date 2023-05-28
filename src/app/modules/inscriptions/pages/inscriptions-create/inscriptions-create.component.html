@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>{{titleActionForm}} Clase</h1>
+<h1 mat-dialog-title>{{titleActionForm}} Inscripción</h1>
 <div mat-dialog-content>
-    <form class="grid formgrid" [formGroup]="classeForm">
+    <form class="grid formgrid" [formGroup]="inscriptionForm">
         <div class="col-12 field">
             <mat-form-field class="w-full">
-                <mat-label>Clase</mat-label>
-                <input [formControl]="classeControl" type="text" matInput>
-                <mat-error *ngFor="let error of classeControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
+                <mat-label>Inscripción</mat-label>
+                <input [formControl]="inscriptionControl" type="text" matInput>
+                <mat-error *ngFor="let error of inscriptionControl.errors | keyvalue">{{ error | errorMessages }}</mat-error>
             </mat-form-field>
             <mat-form-field class="w-full">
                 <mat-label>Profesor</mat-label>
@@ -31,5 +31,5 @@
 </div>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button (click)="editClasse()" mat-button>Aceptar</button>
+    <button (click)="editInscription()" mat-button>Aceptar</button>
 </div>

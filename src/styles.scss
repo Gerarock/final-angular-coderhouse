@@ -30,8 +30,9 @@ body {
 }
 
 .container {
-    margin-top: 10px;
+    padding-top: 20px;
     margin-bottom: 10px;
+    height: 93% !important;
 }
 
 .mdc-fab {
@@ -46,4 +47,29 @@ body {
 .mat-icon {
     height: 30px !important;
     width: 30px !important;
+}
+
+span.mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.mat-body p,
+.mat-body-2 p,
+.mat-typography .mat-body p,
+.mat-typography .mat-body-2 p,
+.mat-typography p {
+    margin: 0px 0px 5px 0px;
+}
+
+.mdc-list {
+    margin: 0;
+    padding: 60px 0 !important;
+    list-style-type: none;
+}
+
+.mdc-list-item.mdc-list-item--with-one-line {
+    height: 60px !important;
 }

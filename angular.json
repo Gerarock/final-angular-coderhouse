@@ -84,7 +84,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
@@ -128,6 +131,9 @@
   },
   "defaultProject": "angular-final-coderhouse",
   "cli": {
-    "analytics": "7cc2c358-e59b-4a2c-90bb-9bd69557e2bf"
+    "analytics": "7cc2c358-e59b-4a2c-90bb-9bd69557e2bf",
+    "schematicCollections": [
+      "@ngrx/schematics"
+    ]
   }
 }
