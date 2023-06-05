@@ -8,6 +8,15 @@
       "password": "test",
       "token": "eqwueh8j213nwe8dsndsahui8",
       "role": "admin"
+    },
+    {
+      "id": 2,
+      "nombre": "Sebastian",
+      "apellido": "Gonzalez",
+      "email": "user@mail.com",
+      "password": "test",
+      "token": "eqwueh8j213nwe8dsndsahui8",
+      "role": "user"
     }
   ],
   "courses": [
@@ -177,6 +186,12 @@
       "subjectId": 5,
       "courseId": 5,
       "id": 20
+    },
+    {
+      "studentId": 2,
+      "subjectId": 1,
+      "courseId": 1,
+      "id": 21
     }
   ],
   "students": [

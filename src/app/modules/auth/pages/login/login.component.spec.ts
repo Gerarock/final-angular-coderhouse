@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 describe('LoginComponent', () => {
@@ -7,20 +8,37 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let authService: AuthService;
 
-  it('should create', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
+      declarations: [LoginComponent],
+      providers: [AuthService]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    authService = TestBed.inject(AuthService);
+    fixture.detectChanges();
+  });
+
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('El formulario debe ser invalido si la contraseña no ha sido ingresada', () => {
-    component.passwordControl.setValue(null);
-    expect(component.loginForm.invalid).toBe(true);
-  });
+  it('Deberia marcar el formulario si es invalido', () => {
+    const formValue = {
+      user: '',
+      password: ''
+    };
 
-  it('Debe llamarse al metodo login de AuthServicse si el formulario es valido en el metodo onSubmit', () => {
-    const spyOnAuthServiceLogin = spyOn(authService, 'login');
-    component.loginForm.setValue({ user: 'test@mail.com', password: '123456' });
+    component.loginForm.setValue(formValue);
     component.onSubmit();
-    expect(spyOnAuthServiceLogin).toHaveBeenCalled();
+
+    expect(component.loginForm.invalid).toBeTrue();
+    expect(component.userControl.touched).toBeTrue();
+    expect(component.passwordControl.touched).toBeTrue();
   });
 
 });

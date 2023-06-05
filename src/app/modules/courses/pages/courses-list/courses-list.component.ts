@@ -39,14 +39,12 @@ export class CoursesListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.coursesService.getCourses()
+    this.coursesService.getApiCoursesWhitSubject()
       .subscribe((courses) => {
         this.dataSource.data = courses;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       });
-    this.coursesService.getApiCoursesWhitSubject();
-
   }
 
   createCourses(): void {

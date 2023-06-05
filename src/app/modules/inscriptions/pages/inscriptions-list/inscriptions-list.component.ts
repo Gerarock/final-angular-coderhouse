@@ -35,8 +35,7 @@ export class InscriptionsListComponent implements OnInit, OnDestroy {
   constructor(
     private matDialog: MatDialog,
     private _bottomSheet: MatBottomSheet,
-    private store: Store,
-    private inscriptionService: InscriptionsService
+    private store: Store
   ) {
     this.store.dispatch(InscriptionsActions.loadInscriptions());
     this.state$ = this.store.select(selectInscriptionsState);
@@ -51,7 +50,6 @@ export class InscriptionsListComponent implements OnInit, OnDestroy {
   }
 
   aplicarFiltros(ev: Event): void {
-    console.log()
     const inputValue = (ev.target as HTMLInputElement)?.value;
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }

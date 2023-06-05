@@ -62,7 +62,6 @@ export class InscriptionsCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(this.data.value)
     if (this.data.value) {
       this.titleActionForm = this.data.action;
       this.studentIdControl.setValue(this.data.value.studentId);

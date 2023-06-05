@@ -26,15 +26,6 @@ export class CoursesService {
       )
   }
 
-  /*   getApiCourses(): void {
-      this.httpClient.get<ICourse[]>(`${environment.apiBaseUrl}/courses`)
-        .subscribe({
-          next: (course) => {
-            this.courses$.next(course);
-          }
-        })
-    } */
-
   getApiCourses(): Observable<ICourse[]> {
     return this.httpClient.get<ICourse[]>(`${environment.apiBaseUrl}/courses`);
   }
