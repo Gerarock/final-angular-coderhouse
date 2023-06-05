@@ -4,6 +4,10 @@ import { Observable, BehaviorSubject, map, catchError, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/core/models/user.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store';
+import { selectAuthUser } from '../store/auth/auth.selectors';
+import { EliminarUsuarioAutenticado, EstablecerUsuarioAutenticado } from '../store/auth/auth.actions';
 
 export interface LoginFormValue {
   id: number;
@@ -20,15 +24,18 @@ export interface LoginFormValue {
 })
 export class AuthService {
 
-  private authUser$ = new BehaviorSubject<User | null>(null);
-
   constructor(
     private router: Router,
-    private httClient: HttpClient
+    private httClient: HttpClient,
+    private store: Store<AppState>
   ) { }
 
   obtenerUsuarioAutenticado(): Observable<User | null> {
-    return this.authUser$.asObservable();
+    return this.store.select(selectAuthUser); //Retorna el Observable que selecciona el AuthUser en el Selector
+  }
+
+  establecerUsuarioAutenticado(usuario: User, token: string): void {
+    this.store.dispatch(EstablecerUsuarioAutenticado({ payload: { ...usuario, token } }));
   }
 
   login(formValue: LoginFormValue): void {
@@ -44,8 +51,7 @@ export class AuthService {
         const usuarioAutenticado = usuarios[0];
         if (usuarioAutenticado) {
           localStorage.setItem('token', usuarioAutenticado.token);
-          localStorage.setItem('auth-user', JSON.stringify(usuarioAutenticado));
-          this.authUser$.next(usuarioAutenticado);
+          this.establecerUsuarioAutenticado(usuarioAutenticado, usuarioAutenticado.token);
           this.router.navigate(['dashboard']);
         } else {
           alert('¡Usuario o contraseña incorrectos!');
@@ -56,8 +62,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('auth-user');
-    this.authUser$.next(null);
+    this.store.dispatch(EliminarUsuarioAutenticado());
     this.router.navigate(['auth', 'login']);
   }
 
@@ -76,7 +81,7 @@ export class AuthService {
           const usuarioAutenticado = usuarios[0];
           if (usuarioAutenticado) {
             localStorage.setItem('token', usuarioAutenticado.token);
-            this.authUser$.next(usuarioAutenticado);
+            this.establecerUsuarioAutenticado(usuarioAutenticado, usuarioAutenticado.token);
           }
           return !!usuarioAutenticado;
         }),

@@ -1,8 +1,9 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { IInscription } from 'src/app/core/models/inscription';
+import { IInscription, IInscriptionWhitAll } from 'src/app/core/models/inscription';
 import { InscriptionsService } from '../../services/inscriptions.service';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-inscriptions-detail',
@@ -12,19 +13,28 @@ import { InscriptionsService } from '../../services/inscriptions.service';
 export class InscriptionsDetailComponent implements OnDestroy {
 
   public inscription: IInscription | undefined;
+  public inscriptionDetail: IInscriptionWhitAll
   private destroyed$ = new Subject()
+  public inscriptionId: number;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: number,
+    private _bottomSheetRef: MatBottomSheetRef,
     private inscriptionsService: InscriptionsService
   ) {
-    this.inscriptionsService.getInscriptionsById(parseInt(this.activatedRoute.snapshot.params['id']))
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((inscription) => this.inscription = inscription);
+    this.inscriptionsService.getInscriptionWithAllById(data)
+      .subscribe({
+        next: (res) => {
+          this.inscriptionDetail = res;
+        }
+      });
   }
 
   ngOnDestroy(): void {
     this.destroyed$.next(true);
   }
 
+  closeBottomSheet() {
+    this._bottomSheetRef.dismiss();
+  }
 }

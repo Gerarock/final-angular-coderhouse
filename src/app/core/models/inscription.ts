@@ -10,15 +10,21 @@ export interface IInscription {
 }
 
 export interface IInscriptionWhitStudent extends IInscription {
-    student: IStudent;
+    student?: IStudent;
 }
 
 export interface IInscriptionWhitSubject extends IInscription {
-    subject: ISubject;
+    subject?: ISubject;
 }
 
 export interface IInscriptionWhitCourse extends IInscription {
-    course: ICourse;
+    course?: ICourse;
+}
+
+export interface ICreateInscriptionData {
+    subjectId: number;
+    studentId: number;
+    courseId: number;
 }
 
 export type IInscriptionWhitAll = IInscriptionWhitStudent & IInscriptionWhitSubject & IInscriptionWhitCourse;

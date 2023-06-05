@@ -26,21 +26,21 @@ export class CoursesService {
       )
   }
 
-  getApiCourses(): void {
-    this.httpClient.get<ICourse[]>(`${environment.apiBaseUrl}/courses`)
-      .subscribe({
-        next: (course) => {
-          this.courses$.next(course);
-        }
-      })
+  /*   getApiCourses(): void {
+      this.httpClient.get<ICourse[]>(`${environment.apiBaseUrl}/courses`)
+        .subscribe({
+          next: (course) => {
+            this.courses$.next(course);
+          }
+        })
+    } */
+
+  getApiCourses(): Observable<ICourse[]> {
+    return this.httpClient.get<ICourse[]>(`${environment.apiBaseUrl}/courses`);
   }
 
-  getApiCoursesWhitSubject(): void {
-    this.httpClient.get<ICourseWhitSubject[]>(`${environment.apiBaseUrl}/courses?_expand=subject`)
-      .subscribe({
-        next: (course) => {
-          this.courses$.next(course);
-        }
-      })
+  getApiCoursesWhitSubject(): Observable<ICourseWhitSubject[]> {
+    return this.httpClient.get<ICourseWhitSubject[]>(`${environment.apiBaseUrl}/courses?_expand=subject`);
   }
+
 }

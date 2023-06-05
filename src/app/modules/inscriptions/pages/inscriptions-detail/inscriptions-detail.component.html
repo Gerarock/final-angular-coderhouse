@@ -2,49 +2,45 @@
     <div fxFlex="95%">
         <mat-card>
             <mat-card-content>
-                <h2>Perfil Alumno</h2>
+                <h2>Detalle Inscripción</h2>
                 <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column">
                     <div fxFlex="30%" fxFlex.sm="95%" fxFlex.xs="95%">
                         <div class="profile-card">
                             <img src="assets/img/user.png">
                             <h2 class="title">
-                                dd
+                                {{inscriptionDetail?.student.nombre}} {{inscriptionDetail?.student.apellido}}
                             </h2>
-                            <label>
-                                vvv
-                            </label>
-                            <label>
-                                fff
-                            </label>
                         </div>
                     </div>
                     <div fxFlex></div>
                     <div fxFlex="65%" fxFlex.sm="95%" fxFlex.xs="950%">
-                        <p>Use the form below to change your password.</p>
+                        <h2>Detalles del Alumno</h2>
                         <div fxLayout="row">
-                            <div fxFlex="40%" fxFlex.md="60%" fxFlex.sm="50%" fxFlex.xs="100%">
-                                <mat-form-field class="full-width">
-                                    <input matInput placeholder="Current Password" autocomplete="current-password">
-                                    <mat-icon matSuffix>
-                                        ddddd
-                                    </mat-icon>
-                                </mat-form-field>
-                                <button mat-raised-button color="primary">Save</button>
-
+                            <div fxFlex="40%" fxFlex.md="100%" fxFlex.sm="50%" fxFlex.xs="100%">
+                                <p><b>Edad:</b> {{inscriptionDetail?.student.edad}}</p>
+                                <p><b>Email:</b> {{inscriptionDetail?.student.direccion}}</p>
+                                <p><b>Dirección:</b> {{inscriptionDetail?.student.email}}</p>
+                                <p><b>Fecha de Registro:</b> {{inscriptionDetail?.student.fecha_registro | date: 'dd/MM/YYYY'}}</p>
                             </div>
-
                         </div>
-
-
-
-
-
                     </div>
-
+                    <div fxFlex="65%" fxFlex.sm="95%" fxFlex.xs="950%">
+                        <h2>Detalles del Curso</h2>
+                        <div fxLayout="row">
+                            <div fxFlex="40%" fxFlex.md="100%" fxFlex.sm="50%" fxFlex.xs="100%">
+                                <p><b>Curso:</b> {{inscriptionDetail?.subject.nombre}}</p>
+                                <p><b>Inicio:</b> {{inscriptionDetail?.course.fecha_inicio | date: 'dd/MM/YYYY'}}</p>
+                                <p><b>Fin:</b> {{inscriptionDetail?.course.fecha_fin | date: 'dd/MM/YYYY'}}</p>
+                                <p><b>Descripción:</b> {{inscriptionDetail?.subject.description}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="align-button">
+                    <button (click)="closeBottomSheet()" mat-raised-button color="warn">Salir</button>
                 </div>
             </mat-card-content>
         </mat-card>
     </div>
-
-
 </div>

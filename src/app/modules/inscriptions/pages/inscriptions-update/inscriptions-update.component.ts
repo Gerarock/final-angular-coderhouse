@@ -1,21 +1,22 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { ICourse, ICourseWhitSubject } from 'src/app/core/models/course';
 import { IStudent } from 'src/app/core/models/student';
-import { CoursesService } from 'src/app/modules/courses/services/courses.service';
 import { StudentsService } from 'src/app/modules/students/services/students.service';
-import { InscriptionsActions } from '../../store/inscriptions.actions';
+import { InscriptionsCreateComponent } from '../inscriptions-create/inscriptions-create.component';
+import { CoursesService } from 'src/app/modules/courses/services/courses.service';
+import { Store } from '@ngrx/store';
 import { ICreateInscriptionData } from 'src/app/core/models/inscription';
+import { InscriptionsActions } from '../../store/inscriptions.actions';
 
 @Component({
-  selector: 'app-inscriptions-create',
-  templateUrl: './inscriptions-create.component.html',
-  styleUrls: ['./inscriptions-create.component.scss']
+  selector: 'app-inscriptions-update',
+  templateUrl: './inscriptions-update.component.html',
+  styleUrls: ['./inscriptions-update.component.scss']
 })
-export class InscriptionsCreateComponent implements OnInit, OnDestroy {
+export class InscriptionsUpdateComponent implements OnInit, OnDestroy {
 
   public studentsData: IStudent[] = [];
   public coursesData: ICourseWhitSubject[] = [];

@@ -71,22 +71,10 @@
   ],
   "inscriptions": [
     {
-      "id": 1,
-      "subjectId": 2,
-      "studentId": 1,
-      "courseId": 2
-    },
-    {
       "id": 2,
       "subjectId": 1,
       "studentId": 2,
       "courseId": 1
-    },
-    {
-      "id": 3,
-      "subjectId": 5,
-      "studentId": 3,
-      "courseId": 5
     },
     {
       "id": 4,
@@ -135,6 +123,60 @@
       "subjectId": 2,
       "studentId": 11,
       "courseId": 5
+    },
+    {
+      "studentId": 1,
+      "subjectId": 1,
+      "courseId": 1,
+      "id": 12
+    },
+    {
+      "studentId": 2,
+      "subjectId": 5,
+      "courseId": 5,
+      "id": 13
+    },
+    {
+      "studentId": 1,
+      "subjectId": 4,
+      "courseId": 4,
+      "id": 14
+    },
+    {
+      "studentId": 1,
+      "subjectId": 2,
+      "courseId": 2,
+      "id": 15
+    },
+    {
+      "studentId": 4,
+      "subjectId": 2,
+      "courseId": 3,
+      "id": 16
+    },
+    {
+      "studentId": 5,
+      "subjectId": 1,
+      "courseId": 1,
+      "id": 17
+    },
+    {
+      "studentId": 10,
+      "subjectId": 5,
+      "courseId": 5,
+      "id": 18
+    },
+    {
+      "studentId": 1,
+      "subjectId": 5,
+      "courseId": 5,
+      "id": 19
+    },
+    {
+      "studentId": 1,
+      "subjectId": 5,
+      "courseId": 5,
+      "id": 20
     }
   ],
   "students": [

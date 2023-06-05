@@ -22,12 +22,15 @@ import { InscriptionsEffects } from './store/inscriptions.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { inscriptionsFeature } from './store/inscriptions.reducer';
+import { MatSelectModule } from '@angular/material/select';
+import { InscriptionsUpdateComponent } from './pages/inscriptions-update/inscriptions-update.component';
 
 @NgModule({
   declarations: [
     InscriptionsCreateComponent,
     InscriptionsDetailComponent,
-    InscriptionsListComponent
+    InscriptionsListComponent,
+    InscriptionsUpdateComponent
   ],
   imports: [
     CommonModule,
@@ -44,10 +47,11 @@ import { inscriptionsFeature } from './store/inscriptions.reducer';
     FlexLayoutModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule,
     MatBottomSheetModule,
     MatListModule,
-  /*   StoreModule.forFeature(inscriptionsFeature),
-    EffectsModule.forFeature([InscriptionsEffects]) */
+    StoreModule.forFeature(inscriptionsFeature),
+    EffectsModule.forFeature([InscriptionsEffects])
   ],
   exports: [
     InscriptionsCreateComponent,

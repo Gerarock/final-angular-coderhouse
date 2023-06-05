@@ -39,13 +39,14 @@ export class StudentsListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.studentsService.getAlumns()
-      .subscribe((alumns) => {
-        this.dataSource.data = alumns;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+    this.studentsService.getApiAlumns()
+      .subscribe({
+        next: (res) => {
+          this.dataSource.data = res;
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
       });
-    this.studentsService.getApiAlumns();
   }
 
   createStudent(): void {

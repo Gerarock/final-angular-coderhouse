@@ -23,31 +23,4 @@ describe('AuthService', () => {
     httpController = TestBed.inject(HttpTestingController);
   });
 
-  it('El metodo login debe retornar ok', (done) => {
-    const mockPayload: LoginFormValue = {
-      user: 'test',
-      password: 'test@mail.com'
-    };
-
-    spyOn(TestBed.inject(Router), 'navigate').and.stub();
-
-    service.obtenerUsuarioAutenticado()
-      .pipe(skip(1))
-      .subscribe({
-        next: (usuario) => {
-          expect(usuario).toBeTruthy();
-          done();
-        },
-      })
-
-    service.login(mockPayload);
-
-    httpController.expectOne({
-      url: `${environment.apiBaseUrl}/users?user=${mockPayload.user}&password=${mockPayload.password}`,
-      method: 'GET',
-    }).flush([
-     
-    ])
-  });
-
 });

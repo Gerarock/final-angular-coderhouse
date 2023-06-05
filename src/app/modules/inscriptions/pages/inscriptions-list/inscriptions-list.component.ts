@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subject } from 'rxjs';
-import { IInscription } from 'src/app/core/models/inscription';
+import { Observable, Subject } from 'rxjs';
+import { IInscription, IInscriptionWhitAll } from 'src/app/core/models/inscription';
 import { InscriptionsService } from '../../services/inscriptions.service';
 import { InscriptionsCreateComponent } from '../inscriptions-create/inscriptions-create.component';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +10,12 @@ import { MatSort } from '@angular/material/sort';
 import Swal from 'sweetalert2';
 import { InscriptionsDetailComponent } from '../inscriptions-detail/inscriptions-detail.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { Store } from '@ngrx/store';
+import { InscriptionsActions } from '../../store/inscriptions.actions';
+import { State } from '../../store/inscriptions.reducer';
+import { selectInscriptionsState } from '../../store/inscriptions.selectors';
+import { InscriptionsUpdateComponent } from '../inscriptions-update/inscriptions-update.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-inscriptions-list',
@@ -20,75 +26,64 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 export class InscriptionsListComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  @ViewChild(MatSort, { static: true })
 
-  sort: MatSort = new MatSort;
-
+  state$: Observable<State>;
   destroyed$ = new Subject<void>();
-  dataSource = new MatTableDataSource<IInscription>();
-  displayedColumns: string[] = ['id', 'curso', 'inicioCurso', 'finCurso', 'alumno', 'edad', 'direccion', 'email', 'fechaRegistro', 'ver_detalle', 'eliminar', 'editar'];
+  dataSource = new MatTableDataSource<IInscriptionWhitAll>();
+  displayedColumns: string[] = ['id', 'curso', 'inicioCurso', 'finCurso', 'alumno', 'ver_detalle', 'eliminar', 'editar'];
+
+  constructor(
+    private matDialog: MatDialog,
+    private _bottomSheet: MatBottomSheet,
+    private store: Store,
+    private inscriptionService: InscriptionsService
+  ) {
+    this.store.dispatch(InscriptionsActions.loadInscriptions());
+    this.state$ = this.store.select(selectInscriptionsState);
+  }
+
+  ngOnInit(): void {
+    this.store.select(selectInscriptionsState)
+      .subscribe(({ inscriptions }) => {
+        this.dataSource.data = inscriptions;
+        this.dataSource.paginator = this.paginator;
+      });
+  }
 
   aplicarFiltros(ev: Event): void {
+    console.log()
     const inputValue = (ev.target as HTMLInputElement)?.value;
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
 
-  constructor(
-    private matDialog: MatDialog,
-    private inscriptionsService: InscriptionsService,
-    private _bottomSheet: MatBottomSheet
-  ) { }
-
-  ngOnInit(): void {
-    this.inscriptionsService.getInscriptions()
-      .subscribe((inscriptions) => {
-        this.dataSource.data = inscriptions;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      });
-    this.inscriptionsService.getApiInscriptionsWhitAll();
-  }
-
   createInscription(): void {
-    const dialog = this.matDialog.open(InscriptionsCreateComponent, {
+    this.matDialog.open(InscriptionsCreateComponent, {
       data: {
         value: '',
         action: 'Agregar'
       }
     });
-    dialog.afterClosed().subscribe((formValue) => {
-      if (formValue) {
-        this.dataSource.data = [
-          ...this.dataSource.data,
-          {
-            ...formValue,
-            fecha_registro: new Date(),
-            id: this.dataSource.data.length + 1
-          }
-        ];
-      }
-    })
   }
 
-  editInscription(dataToEdit: IInscription): void {
-    const dialog = this.matDialog.open(InscriptionsCreateComponent, {
+  updateInscription(dataToEdit: IInscription): void {
+    this.matDialog.open(InscriptionsUpdateComponent, {
       data: {
         value: dataToEdit,
-        action: 'Editar'
+        action: 'Actualizar'
       }
     });
-    dialog.afterClosed().subscribe((formValue) => {
-      if (formValue) {
-        this.dataSource.data = this.dataSource.data.map(
-          (selectedInscription) => selectedInscription.id === dataToEdit.id
-            ? ({ ...selectedInscription, ...formValue })
-            : selectedInscription
-        );
-      }
-    })
+    /*     dialog.afterClosed().subscribe((formValue) => {
+          if (formValue) {
+            this.dataSource.data = this.dataSource.data.map(
+              (selectedInscription) => selectedInscription.id === dataToEdit.id
+                ? ({ ...selectedInscription, ...formValue })
+                : selectedInscription
+            );
+          }
+        }) */
   }
 
-  deleteInscription(dataToDelete: IInscription): void {
+  deleteInscription(id: number): void {
     Swal.fire({
       title: 'Vas a eliminar la inscripción ',
       text: "¿Realmente deseas continuar?",
@@ -102,9 +97,7 @@ export class InscriptionsListComponent implements OnInit, OnDestroy {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.dataSource.data = this.dataSource.data.filter(
-          (selectedInscription) => selectedInscription.id !== dataToDelete.id
-        );
+        this.store.dispatch(InscriptionsActions.deleteInscriptions({ id }));
 
         Swal.fire({
           position: 'center',
@@ -115,14 +108,13 @@ export class InscriptionsListComponent implements OnInit, OnDestroy {
           timer: 1800,
         })
       }
-    })
+    });
   }
 
   detailInscription(inscriptionId: number): void {
-    this._bottomSheet.open(InscriptionsDetailComponent);
-    /*     this.router.navigate([inscriptionId], {
-          relativeTo: this.activatedRoute
-        }); */
+    this._bottomSheet.open(InscriptionsDetailComponent, {
+      data: inscriptionId
+    });
   }
 
   ngOnDestroy(): void {

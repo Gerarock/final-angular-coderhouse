@@ -4,6 +4,7 @@
   </button>
   <span appFontSize>Mantenedor de Alumnos</span>
   <span class="spacer"></span>
+  <span>Bienvenido {{(authUser$ | async)?.nombre}} {{(authUser$ | async)?.apellido}}</span>
 <!--   <button mat-icon-button class="icon favorite-icon" (click)="logout()">
     <mat-icon>exit_to_app</mat-icon>
   </button> -->

@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { InscriptionsActions } from './inscriptions.actions';
+import { InscriptionsActions } from './courses.actions';
 import { IInscriptionWhitAll } from 'src/app/core/models/inscription';
 
 export const inscriptionsFeatureKey = 'inscriptions';

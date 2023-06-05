@@ -46,6 +46,7 @@ export class CoursesListComponent implements OnInit, OnDestroy {
         this.dataSource.sort = this.sort;
       });
     this.coursesService.getApiCoursesWhitSubject();
+
   }
 
   createCourses(): void {
