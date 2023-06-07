@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from 'src/app/core/guards/admin.guard';
 
 const routes: Routes = [
     {
@@ -12,6 +13,7 @@ const routes: Routes = [
     },
     {
         path: 'inscriptions',
+        canActivate: [AdminGuard],
         loadChildren: () => import('../inscriptions/inscriptions.module').then((m) => m.InscriptionsModule)
     }
 ];

@@ -7,7 +7,7 @@
       "email": "gveliz@mail.com",
       "password": "test",
       "token": "eqwueh8j213nwe8dsndsahui8",
-      "role": "admin"
+      "role": "administrador"
     },
     {
       "id": 2,
@@ -15,8 +15,8 @@
       "apellido": "Gonzalez",
       "email": "user@mail.com",
       "password": "test",
-      "token": "eqwueh8j213nwe8dsndsahui8",
-      "role": "user"
+      "token": "fsfsdf78973482980sdfshj",
+      "role": "Usuario"
     }
   ],
   "courses": [
