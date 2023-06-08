@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject, map, catchError, of } from 'rxjs';
+import { Observable, map, catchError, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/core/models/user.model';
@@ -8,17 +8,10 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store';
 import { selectAuthUser } from '../store/auth/auth.selectors';
 import { EliminarUsuarioAutenticado, EstablecerUsuarioAutenticado } from '../store/auth/auth.actions';
-
 export interface LoginFormValue {
-  id: number;
-  nombre: string;
-  apellido: string;
   email: string;
   password: string;
-  token: string;
-  role: string
 }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -34,11 +27,12 @@ export class AuthService {
     return this.store.select(selectAuthUser); //Retorna el Observable que selecciona el AuthUser en el Selector
   }
 
-  establecerUsuarioAutenticado(usuario: User, token: string): void {
+  establecerUsuarioAutenticado(usuario: User, token: string): void {    
     this.store.dispatch(EstablecerUsuarioAutenticado({ payload: { ...usuario, token } }));
   }
 
   login(formValue: LoginFormValue): void {
+    console.log('form: ', formValue)
     this.httClient.get<User[]>(
       `${environment.apiBaseUrl}/users`,
       {
@@ -48,6 +42,7 @@ export class AuthService {
       }
     ).subscribe({
       next: (usuarios) => {
+        console.log('USUARIO: ', usuarios)
         const usuarioAutenticado = usuarios[0];
         if (usuarioAutenticado) {
           localStorage.setItem('token', usuarioAutenticado.token);

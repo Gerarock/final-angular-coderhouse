@@ -7,16 +7,12 @@
                 <mat-form-field>
                     <mat-label>Usuario</mat-label>
                     <input [formControl]="userControl" type="text" matInput />
-                    <mat-error *ngFor="let error of userControl.errors | keyvalue">{{ error | errorMessages
-                        }}</mat-error>
                 </mat-form-field>
             </div>
             <div class="field pb-10">
                 <mat-form-field class="w-full">
                     <mat-label>Contraseña</mat-label>
                     <input [formControl]="passwordControl" type="password" matInput />
-                    <mat-error *ngFor="let error of userControl.errors | keyvalue">{{ error | errorMessages
-                        }}</mat-error>
                 </mat-form-field>
             </div>
             <div class="flex justify-content-end">

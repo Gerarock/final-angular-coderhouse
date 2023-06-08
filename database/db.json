@@ -4,7 +4,7 @@
       "id": 1,
       "nombre": "Gerardo",
       "apellido": "Veliz",
-      "email": "gveliz@mail.com",
+      "email": "gveliz@gmail.com",
       "password": "test",
       "token": "eqwueh8j213nwe8dsndsahui8",
       "role": "administrador"
@@ -13,7 +13,7 @@
       "id": 2,
       "nombre": "Sebastian",
       "apellido": "Gonzalez",
-      "email": "user@mail.com",
+      "email": "user@gmail.com",
       "password": "test",
       "token": "fsfsdf78973482980sdfshj",
       "role": "Usuario"

@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
-import { AuthService, LoginFormValue } from './auth.service';
+import { AuthService } from './auth.service';
 import { User } from 'src/app/core/models/user.model';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -32,7 +32,7 @@ describe('AuthService', () => {
   it('should log in a user', inject(
     [AuthService, HttpTestingController],
     (authService: AuthService, httpMock: HttpTestingController) => {
-      const formValue: LoginFormValue = {
+      const formValue: User = {
         id: 1,
         nombre: 'test',
         apellido: 'test',

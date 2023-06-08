@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { User } from 'src/app/core/models/user.model';
 import { InscriptionsService } from '../../inscriptions/services/inscriptions.service';
 import links, { NavItem } from '../nav-items';
@@ -10,9 +10,10 @@ import links, { NavItem } from '../nav-items';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnDestroy{
 
   authUser$: Observable<User | null>;
+  destroyed$ = new Subject<void>();
   links = links;
 
   constructor(
@@ -33,6 +34,11 @@ export class DashboardComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
   }
 
 }
