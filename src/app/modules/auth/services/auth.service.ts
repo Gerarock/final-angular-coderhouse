@@ -32,7 +32,6 @@ export class AuthService {
   }
 
   login(formValue: LoginFormValue): void {
-    console.log('form: ', formValue)
     this.httClient.get<User[]>(
       `${environment.apiBaseUrl}/users`,
       {
@@ -42,7 +41,6 @@ export class AuthService {
       }
     ).subscribe({
       next: (usuarios) => {
-        console.log('USUARIO: ', usuarios)
         const usuarioAutenticado = usuarios[0];
         if (usuarioAutenticado) {
           localStorage.setItem('token', usuarioAutenticado.token);
